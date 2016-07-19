@@ -16,34 +16,21 @@
                     <div class="product-categories">
                         <h2 class="text-center">Категории</h2>
                         <div id="accordion">
-                            <h3>First header</h3>
+                            @foreach($categories as $category)
+                            <h3>{{ $category->name }}</h3>
                             <div>
                                 <ul>
-                                    <li><a href="#">Goods 1</a></li>
-                                    <li><a href="#">Goods 2</a></li>
+                                    @foreach($products as $product)
+                                        @if ($category->id === $product->category_id)
+                                            <li><a href="{{ route('products', $product->brand->name) }}">{{ $product->brand->name }}</a></li>
+                                        @else
+                                            <p>В этой категории товаров нет</p>
+                                            <?php break; ?>
+                                        @endif
+                                    @endforeach
                                 </ul>
                             </div>
-                            <h3>Second header</h3>
-                            <div>
-                                <ul>
-                                    <li><a href="#">Goods 1</a></li>
-                                    <li><a href="#">Goods 2</a></li>
-                                </ul>
-                            </div>
-                            <h3>First header</h3>
-                            <div>
-                                <ul>
-                                    <li><a href="#">Goods 1</a></li>
-                                    <li><a href="#">Goods 2</a></li>
-                                </ul>
-                            </div>
-                            <h3>Second header</h3>
-                            <div>
-                                <ul>
-                                    <li><a href="#">Goods 1</a></li>
-                                    <li><a href="#">Goods 2</a></li>
-                                </ul>
-                            </div>
+                            @endforeach
                         </div> <!-- .accordion -->
                     </div>
                 </div>

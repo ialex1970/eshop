@@ -11,6 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('pages.index');
-});
+Route::get('/', [
+    'uses' => 'PageController@getIndex',
+    'as' => 'home'
+]);
+
+Route::get('/products/{brand}', [
+    'uses' => 'PageController@getProducts',
+    'as' => 'products'
+]);
+
+Route::get('/category/{category}', [
+    'uses' => 'PageController@getCategory',
+    'as' => 'category'
+]);
