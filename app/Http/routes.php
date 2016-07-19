@@ -16,12 +16,22 @@ Route::get('/', [
     'as' => 'home'
 ]);
 
+Route::get('about', [
+    'uses' => 'PageController@getAbout',
+    'as' => 'about'
+]);
+
+Route::get('contacts', [
+    'uses' => 'PageController@getContacts',
+    'as' => 'contacts'
+]);
+
 Route::get('/products/{brand}', [
-    'uses' => 'PageController@getProducts',
+    'uses' => 'ProductController@getProducts',
     'as' => 'products'
 ]);
 
 Route::get('/category/{category}', [
-    'uses' => 'PageController@getCategory',
+    'uses' => 'CategoryController@getCategory',
     'as' => 'category'
 ]);
