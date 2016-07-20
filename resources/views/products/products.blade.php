@@ -17,7 +17,12 @@
                             </div>
                             <div class="text-center">
                                 <h3>{{ $product->price }} руб.</h3>
-                                <a class="btn btn-primary btn-block" href="#">Добавить в корзину</a>
+                                {!! Form::open(['route' => 'addToCart', 'method' => 'post']) !!}
+                                    {!! Form::hidden('product_id', $product->id) !!}
+                                	<div class="form-group">
+                                	    {!! Form::submit('В корзину', ['class' => 'btn btn-primary btn-block']) !!}
+                                	</div>
+                                {!! Form::close() !!}
                             </div>
                         </div>
                     </div>

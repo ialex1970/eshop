@@ -35,3 +35,26 @@ Route::get('/category/{category}', [
     'uses' => 'CategoryController@getCategory',
     'as' => 'category'
 ]);
+
+Route::post('cart', [
+    'uses' => 'CartController@postCart',
+    'as' => 'addToCart'
+]);
+
+Route::get('cart', [
+    'uses' => 'CartController@getCart',
+    'as' => 'show.cart'
+]);
+
+Route::get('cart/{id}', [
+    'uses' => 'CartController@getUpdateCart',
+    'as' => 'update.cart'
+]);
+
+Route::get('clear-cart', [
+    'uses' => 'CartController@clearCart',
+    'as' => 'clear.cart'
+]);
+Route::auth();
+
+Route::get('/home', 'HomeController@index');

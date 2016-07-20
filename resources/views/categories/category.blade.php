@@ -20,7 +20,15 @@
                                 </div>
                                 <div class="text-center">
                                     <h3>{{ $product->price }} руб.</h3>
-                                    <a class="btn btn-primary btn-block" href="#">Добавить в корзину</a>
+                                    <form method="POST" action="{{route('addToCart')}}">
+                                        <input type="hidden" name="product_id" value="{{$product->id}}">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <button type="submit" class="btn btn-primary btn-block add-to-cart">
+                                            <i class="fa fa-shopping-cart"></i>
+                                            Add to cart
+                                        </button>
+                                    </form>
+                                    {{--<a class="btn btn-primary btn-block" href="{{ route('cart') }}">Добавить в корзину</a>--}}
                                 </div>
                             </div>
                         </div>

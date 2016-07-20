@@ -33,6 +33,8 @@
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Login</a></li>
+
+                <li><a href="{{ route('show.cart') }}"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i> Корзина <span class="badge">{{ (\Session::has('count') && \Session::get('count') > 0 ) ? \Session::get('count') : '' }}</span></a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                     <ul class="dropdown-menu">

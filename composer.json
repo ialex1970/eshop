@@ -9,7 +9,9 @@
         "laravel/framework": "5.2.*",
         "barryvdh/laravel-ide-helper": "v2.2.1",
         "laravelcollective/html": "v5.2.4",
-        "caouecs/laravel-lang": "3.0.8"
+        "caouecs/laravel-lang": "3.0.8",
+        "gloudemans/shoppingcart": "2.1.2",
+        "frozennode/administrator": "v5.0.12"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
