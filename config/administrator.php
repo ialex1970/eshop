@@ -21,7 +21,7 @@ return array(
 	 *
 	 *  @type array
 	 */
-	'middleware' => array(),
+	'middleware' => array('web'),
 
 	/**
 	 * Page title
@@ -65,7 +65,7 @@ return array(
 	 * 		'Analytics' => array('E-Commerce' => 'page.ecommerce.analytics'),
 	 *	)
 	 */
-	'menu' => array('categories'),
+	'menu' => array('users','categories', 'profiles'),
 
 	/**
 	 * The permission option is the highest-level authentication check that lets you define a closure that should return true if the current user
@@ -75,7 +75,10 @@ return array(
 	 */
 	'permission'=> function()
 	{
-		return Auth::check();
+		//return Auth::check();
+		if (Auth::user()->is_admin) {
+			return true;
+		}
 	},
 
 	/**
@@ -98,7 +101,7 @@ return array(
 	 *
 	 * @type string
 	 */
-	'home_page' => '',
+	'home_page' => 'users',
 
 	/**
 	 * The route to which the user will be taken when they click the "back to site" button
@@ -112,7 +115,7 @@ return array(
 	 *
 	 * @type string
 	 */
-	'login_path' => 'auth/login',
+	'login_path' => 'login',
 
 	/**
 	 * The logout path is the path where Administrator will send the user when they click the logout link

@@ -55,6 +55,22 @@ Route::get('clear-cart', [
     'uses' => 'CartController@clearCart',
     'as' => 'clear.cart'
 ]);
+
+Route::get('profile/{id}', [
+   'uses' => 'UserController@getProfile',
+    'as' => 'profile'
+]);
+
+Route::post('create/profile', [
+    'uses' => 'UserController@postProfile',
+    'as' => 'create.profile'
+]);
+
+Route::post('create/order', [
+    'uses' => 'OrderController@postCreateOrder',
+    'as' => 'create.order'
+]);
+
 Route::auth();
 
 Route::get('/home', 'HomeController@index');

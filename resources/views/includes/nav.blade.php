@@ -32,18 +32,24 @@
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Login</a></li>
+                <li><a href="{{ url('login') }}">{{ Auth::check() ? '' : 'Login' }}</a></li>
 
-                <li><a href="{{ route('show.cart') }}"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i> Корзина <span class="badge">{{ (\Session::has('count') && \Session::get('count') > 0 ) ? \Session::get('count') : '' }}</span></a></li>
+                <li><a href="{{ route('show.cart') }}"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i> Корзина <span class="badge">{{ (\Auth::check() && \Session::has('count') && \Session::get('count') > 0 ) ? \Session::get('count') : '' }}</span></a></li>
+                @if(Auth::check())
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
+
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ route('profile', Auth::user()->id) }}">Профиль</a></li>
+                            @if(Auth::user()->is_admin)
+                                <li><a href="{{ url('admin') }}">Вход в админку</a></li>
+                            @endif
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="{{ url('logout') }}">Выход</a></li>
+                        </ul>
+                    @endif
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Request;
 use Session;
@@ -56,12 +57,16 @@ class CartController extends Controller
             Cart::update($rowId[0], $item->qty + 1);
         }
 
+        if (Auth::check()) {
+            $user = Auth::user();
+        }
 
-        if (Session::has('cart')) {
+        if (Auth::check() && Session::has('cart') && Session::has('count')) {
             $cart = Session::get('cart');
             $cart = $cart['default'];
-            return view('carts.cart', compact('cart'));
+            return view('carts.cart', compact('cart', 'user'));
         } else {
+            Session::flash('error', 'В корзине ничего нет');
             return redirect()->back();
         }
 

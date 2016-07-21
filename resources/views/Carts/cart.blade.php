@@ -11,7 +11,7 @@
         <div class="container">
             <div class="breadcrumbs">
                 <ol class="breadcrumb">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="{{ route('home') }}">Home</a></li>
                     <li class="active">Shopping Cart</li>
                 </ol>
             </div>
@@ -36,10 +36,9 @@
                                 </td>
                                 <td class="cart_description">
                                     <h4><a href="">{{$item->name}}</a></h4>
-                                    <p>Web ID: {{$item->id}}</p>
                                 </td>
                                 <td class="cart_price">
-                                    <p>${{$item->price}}</p>
+                                    <p>{{$item->price}} руб.</p>
                                 </td>
                                 <td class="cart_quantity">
                                     <div class="cart_quantity_button">
@@ -49,7 +48,7 @@
                                     </div>
                                 </td>
                                 <td class="cart_total">
-                                    <p class="cart_total_price">${{$item->subtotal}}</p>
+                                    <p class="cart_total_price">{{$item->subtotal}} руб.</p>
                                 </td>
                                 <td class="cart_delete">
                                     <a class="btn btn-danger" href="{{ route('update.cart', $item->id) }}">
@@ -62,10 +61,10 @@
                         @endforeach
                         <tr>
                             <td></td>
-                            <td><a class="btn btn-danger update" href="{{url('clear-cart')}}">Очистить корзину</a></td>
+                            <td>Всего</td>
                             <td></td>
                             <td></td>
-                            <td><a class="btn btn-primary  check_out" href="{{url('checkout')}}">Оформить заказ</a></td>
+                            <td><span>{{Cart::total()}} руб.</span></td>
                             <td></td>
                         </tr>
                         @else
@@ -73,10 +72,32 @@
                         @endif
                         </tbody>
                     </table>
+                    <div class="col-sm-6">
+                        <div class="total_area">
+                            {{--<ul>
+                                <li>Cart Sub Total <span>$59</span></li>
+                                <li>Eco Tax <span>$2</span></li>
+                                <li>Shipping Cost <span>Free</span></li>
+                                <li>Total <span>${{Cart::total()}}</span></li>
+                            </ul>--}}
+                            <a class="btn btn-danger update" href="{{url('clear-cart')}}">Очистить корзину</a>
+                            {{--<a class="btn btn-primary  check_out" href="{{url('checkout')}}">Оформить заказ</a>--}}
+                        </div>
+                    </div>
             </div>
         </div>
-    </section> <!--/#cart_items-->
+    </section>
+    @if(\Auth::user()->profile)
+        @include('includes._profile-form')
+    @else
+        @include('includes._new-profile-form')
+    @endif
 
+@stop
 
-
-@endsection
+{{--
+@if(\Auth::user()->profile()->id)
+    @include('includes._profile-form')
+@else
+    @include('includes._new-profile-form)
+@endif--}}

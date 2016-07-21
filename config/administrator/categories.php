@@ -1,13 +1,14 @@
 <?php
 return [
-'title' => 'Categories',
-    'single' => 'category',
+'title' => 'Категории',
+    'single' => 'категорию',
     'model' => 'App\Category',
     'columns' => [
     'name',
 ],
     'edit_fields' => [
     'name' => [
+        'title' => 'Категория',
         'type' => 'text',
     ],
 ],

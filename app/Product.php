@@ -15,4 +15,9 @@ class Product extends Model
     {
         return $this->belongsTo('App\Brand');
     }
+
+    public function orders()
+    {
+        return $this->belongsToMany('App\Order');
+    }
 }
