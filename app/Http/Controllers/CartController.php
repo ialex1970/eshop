@@ -59,11 +59,13 @@ class CartController extends Controller
 
         if (Auth::check()) {
             $user = Auth::user();
+        }else {
+            return redirect('login');
         }
 
-        if (Auth::check() && Session::has('cart') && Session::has('count')) {
+        if (Cart::count()) {
             $cart = Session::get('cart');
-            $cart = $cart['default'];
+            $cart = Cart::content();
             return view('carts.cart', compact('cart', 'user'));
         } else {
             Session::flash('error', 'В корзине ничего нет');

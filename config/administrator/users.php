@@ -9,7 +9,12 @@ return [
             'title' => 'Имя',
         ],
         'email',
-        'is_admin'
+        'is_admin',
+        'amount' => [
+            'title' => 'Сумма заказов',
+            'relationship' => 'orders',
+            'select' => "SUM((:table).amount)",
+        ],
     ],
     'edit_fields' => [
         'name' => [

@@ -12297,7 +12297,7 @@ namespace {
          * @return float 
          * @static 
          */
-        public static function total($decimals = 2, $decimalPoint = '.', $thousandSeperator = ','){
+        public static function total($decimals = 2, $decimalPoint = '.', $thousandSeperator = ''){
             return \Gloudemans\Shoppingcart\Cart::total($decimals, $decimalPoint, $thousandSeperator);
         }
         

@@ -4,11 +4,22 @@ return [
     'single' => 'профиль',
     'model' => 'App\Profile',
     'columns' => [
-        'id',
+        'name' => [
+            'title' => 'name',
+            'relationship' => 'user',
+            'select' => "CONCAT((:table).name, ' ', (:table).email)",
+        ],
         'address' => [
             'title' => 'Address',
         ],
         'phone',
+    ],
+    'filters' => [
+        'user' => [
+            'type' => 'relationship',
+            'title' => 'Имя',
+            'name_field' => 'name',
+        ],
     ],
     'edit_fields' => [
         'address' => [

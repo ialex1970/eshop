@@ -5,6 +5,11 @@ return [
     'model' => 'App\Category',
     'columns' => [
     'name',
+        'amount' => [
+            'title' => 'Количество товаров',
+            'relationship' => 'products',
+            'select' => "COUNT((:table).name)",
+        ],
 ],
     'edit_fields' => [
     'name' => [

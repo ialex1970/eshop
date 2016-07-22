@@ -71,6 +71,11 @@ Route::post('create/order', [
     'as' => 'create.order'
 ]);
 
+Route::get('user/logout', [
+    'uses' => 'UserController@getLogout',
+    'as' => 'user.logout'
+]);
+
 Route::auth();
 
 Route::get('/home', 'HomeController@index');

@@ -11,6 +11,7 @@
     @include('includes.nav')
     <div class="container">
     @include('includes.flash')
+    @include('includes.errors')
         <div class="row">
             @include('includes.sidebar')
             @yield('content')

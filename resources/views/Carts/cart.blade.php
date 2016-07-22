@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.user')
 
 @section('styles')
     {{ Html::style('https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css') }}
@@ -9,6 +9,10 @@
 
     <section id="cart_items">
         <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+
+
             <div class="breadcrumbs">
                 <ol class="breadcrumb">
                     <li><a href="{{ route('home') }}">Home</a></li>
@@ -85,13 +89,16 @@
                         </div>
                     </div>
             </div>
-        </div>
+                    @if(\Auth::check() && \Auth::user()->profile)
+                        @include('includes._profile-form')
+                    @else
+                        @include('includes._new-profile-form')
+                    @endif
+                </div>
+            </div>
+        </div> <!-- .container-->
     </section>
-    @if(\Auth::user()->profile)
-        @include('includes._profile-form')
-    @else
-        @include('includes._new-profile-form')
-    @endif
+
 
 @stop
 

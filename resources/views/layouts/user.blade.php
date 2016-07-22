@@ -10,12 +10,10 @@
 <body>
 @include('includes.nav')
 <div class="container">
-    @if(\Session::has('success'))
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <div class="alert alert-success">{{ \Session::get('success') }}</div>
-    @endif
-    <div class="row">
 
+    <div class="row">
+        @include('includes.flash')
+        @include('includes.errors')
         @yield('content')
     </div>
 </div>
