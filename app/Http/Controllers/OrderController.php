@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Events\Event;
+use App\Events\OrderEvent;
 use App\Order;
 use App\Profile;
 use App\User;
@@ -50,6 +52,7 @@ class OrderController extends Controller
         foreach ($row as $item) {
             $order->products()->attach($item->id, ['qty' => $item->qty]);
         }
+        \Event::fire(new OrderEvent($order));
 
         Cart::store(Str::random());
         Cart::destroy();
