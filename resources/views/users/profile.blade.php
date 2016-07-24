@@ -50,13 +50,15 @@
                         </thead>
                         <tbody>
                         @foreach($profile->user->orders as $order)
-                            <td>{{ $order->id }}</td>
-                            <td>{{ $order->amount }}</td>
-                            <td>
-                                @foreach($order->products as $product)
-                                    {{ $product->name. '; ' }}
-                                @endforeach
-                            </td>
+                            <tr>
+                                <td>{{ $order->id }}</td>
+                                <td>{{ $order->amount }}</td>
+                                <td>
+                                    @foreach($order->products as $product)
+                                        {!! $product->name. '<br>' !!}
+                                    @endforeach
+                                </td>
+                            </tr>
                         @endforeach
                         </tbody>
                     </table>
