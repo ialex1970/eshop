@@ -52,9 +52,11 @@
                         @foreach($profile->user->orders as $order)
                             <td>{{ $order->id }}</td>
                             <td>{{ $order->amount }}</td>
+                            <td>
                                 @foreach($order->products as $product)
-                                    <td>{{ $product->name }}</td>
+                                    {{ $product->name. '; ' }}
                                 @endforeach
+                            </td>
                         @endforeach
                         </tbody>
                     </table>
