@@ -9,9 +9,9 @@ return [
         'amount' => [
             'title' => 'Сумма заказа'
         ],
-        'user_name' => [
+        'name' => [
             'title' => 'Покупатель',
-            'relationship' => 'users',
+            'relationship' => 'user',
             'select' => '(:table).name'
         ],
         'name' => [
@@ -24,7 +24,7 @@ return [
         ],
     ],
     'filters' => [
-        'users' => [
+        'user' => [
             'type' => 'relationship',
             'title' => 'Name',
             'name_field' => 'name',
