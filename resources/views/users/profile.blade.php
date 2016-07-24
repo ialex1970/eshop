@@ -38,30 +38,30 @@
                         </tbody>
                     </table>
                 <h3>Заказы</h3>
+
+
                 <table class="table">
                         <thead>
                         <tr>
-                            <th>Firstname</th>
-                            <th>Lastname</th>
-                            <th>Email</th>
+                            <th>ID Заказа</th>
+                            <th>Сумма заказа</th>
+                            <th>Товар</th>
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($profile->user->orders as $order)
+                            <td>{{ $order->id }}</td>
+                            <td>{{ $order->amount }}</td>
+                                @foreach($order->products as $product)
+                                    <td>{{ $product->name }}</td>
+                                @endforeach
+                        @endforeach
                         <tr>
                             <td>John</td>
                             <td>Doe</td>
                             <td>john@example.com</td>
                         </tr>
-                        <tr>
-                            <td>Mary</td>
-                            <td>Moe</td>
-                            <td>mary@example.com</td>
-                        </tr>
-                        <tr>
-                            <td>July</td>
-                            <td>Dooley</td>
-                            <td>july@example.com</td>
-                        </tr>
+
                         </tbody>
                     </table>
             </div>
