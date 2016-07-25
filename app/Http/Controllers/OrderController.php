@@ -56,8 +56,8 @@ class OrderController extends Controller
 
         Cart::store(Str::random());
         Cart::destroy();
-        Session::flash('success', 'Спасибо за покупку');
-        return redirect()->route('home');
+        //Session::flash('success', 'Спасибо за покупку');
+        return redirect()->route('home')->with('success', 'Спасибо за покупку');
 
     }
 }

@@ -28,7 +28,7 @@ class SendConfirmation
     public function handle(OrderEvent $event)
     {
         $order_message = $event->message;
-        Mail::send('email.order-message-confirmation', ['order_message' => $order_message], function ($m) use ($order_message) {
+        Mail::queue('email.order-message-confirmation', ['order_message' => $order_message], function ($m) use ($order_message) {
             $m->from('seller@eshop.com', 'Seller');
             $m->to($order_message->user->email, $order_message->user->name);
             $m->subject('Мы получили Ваш заказ');

@@ -12,11 +12,11 @@ class DropOrderUserTable extends Migration
      */
     public function up()
     {
-        Schema::drop('order_user');
+       // Schema::drop('order_user');
 
-        Schema::table('orders', function ($table) {
+       /* Schema::table('orders', function ($table) {
             $table->integer('user_id')->after('id')->unsigned();
-        });
+        });*/
     }
 
     /**
