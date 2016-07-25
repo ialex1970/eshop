@@ -25,6 +25,10 @@ Route::get('contacts', [
     'uses' => 'PageController@getContacts',
     'as' => 'contacts'
 ]);
+Route::post('contacts', [
+    'uses' => 'PageController@postContacts',
+    'as' => 'send.contact'
+]);
 
 Route::get('/products/{brand}', [
     'uses' => 'ProductController@getProducts',
