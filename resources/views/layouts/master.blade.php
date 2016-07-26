@@ -6,7 +6,7 @@
     {{ Html::style('src/css/jquery-ui.min.css') }}
     {{ Html::style('src/css/bootstrap.min.css') }}
 <!--Font-->
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600' rel='stylesheet' type='text/css'>
+    <script src="https://use.fontawesome.com/6bf1e6d0f3.js"></script>
     @yield('styles')
 </head>
 <body>

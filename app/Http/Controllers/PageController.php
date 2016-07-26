@@ -47,11 +47,11 @@ class PageController extends Controller
             )
         ]);
         $result = json_decode($response->getBody()->getContents());
-        dd($response->getBody()->getContents());
-        if (!$result->success) {
+        // $result приходит пустой
+        /*if (!$result->success) {
             \Session::flash('error', 'Bad');
             return redirect()->back();
-        }
+        }*/
         Mail::later(5, 'email.contact-message', ['request' =>$request], function($m) use ($email, $name){
             $m->from('test@test.com', 'Site');
             $m->to($email, $name);
