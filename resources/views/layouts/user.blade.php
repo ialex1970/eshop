@@ -6,6 +6,7 @@
     {{ Html::style('src/css/jquery-ui.min.css') }}
     {{ Html::style('src/css/bootstrap.min.css') }}
     @yield('styles')
+    {{ Html::script('https://www.google.com/recaptcha/api.js') }}
 </head>
 <body>
 @include('includes.nav')

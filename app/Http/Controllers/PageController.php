@@ -35,6 +35,10 @@ class PageController extends Controller
     {
         $email = $request->email;
         $name = $request->name;
+        $token = $request->input('g-recaptcha-response');
+        if (!$token > 0) {
+            return redirect()->back()->withError('Robot?');
+        }
         Mail::later(5, 'email.contact-message', ['request' =>$request], function($m) use ($email, $name){
             $m->from('test@test.com', 'Site');
             $m->to($email, $name);
