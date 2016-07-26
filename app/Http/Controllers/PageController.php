@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactFormRequest;
 use App\Product;
-use Illuminate\Http\Request;
-
+//use Illuminate\Http\Request;
+use GuzzleHttp\Client;
 use App\Http\Requests;
 use Mail;
-use Symfony\Component\Console\Input\Input;
+//use Symfony\Component\Console\Input\Input;
 
 class PageController extends Controller
 {
@@ -38,6 +38,19 @@ class PageController extends Controller
         $token = $request->input('g-recaptcha-response');
         if (!$token > 0) {
             return redirect()->back()->withError('Robot?');
+        }
+        $client = new Client();
+        $response = $client->post('https://www.google.com/recaptcha/api/siteverify', [
+            'form-params' => array(
+                'secret' => '6Ld6AiYTAAAAAGvoxE8pQLlB5qgcfwse5lQYdSYM',
+                'response' => $token
+            )
+        ]);
+        $result = json_decode($response->getBody()->getContents());
+        dd($response->getBody()->getContents());
+        if (!$result->success) {
+            \Session::flash('error', 'Bad');
+            return redirect()->back();
         }
         Mail::later(5, 'email.contact-message', ['request' =>$request], function($m) use ($email, $name){
             $m->from('test@test.com', 'Site');
