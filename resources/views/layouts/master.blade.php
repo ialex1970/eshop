@@ -5,6 +5,8 @@
     <title>@yield('title')</title>
     {{ Html::style('src/css/jquery-ui.min.css') }}
     {{ Html::style('src/css/bootstrap.min.css') }}
+<!--Font-->
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600' rel='stylesheet' type='text/css'>
     @yield('styles')
 </head>
 <body>

@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>@yield('title')</title>
-    {{ Html::style('src/css/jquery-ui.min.css') }}
-    {{ Html::style('src/css/bootstrap.min.css') }}
+        {{ Html::style('src/css/jquery-ui.min.css') }}
+        {{ Html::style('src/css/bootstrap.min.css') }}
     @yield('styles')
-    {{ Html::script('https://www.google.com/recaptcha/api.js') }}
+        {{ Html::script('https://www.google.com/recaptcha/api.js') }}
 </head>
 <body>
 @include('includes.nav')
