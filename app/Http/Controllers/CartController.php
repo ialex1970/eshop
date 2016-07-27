@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use App\Product;
 use Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
-use Request;
+use Illuminate\Support\Str;
+//use Request;
+use Illuminate\Http\Request;
 use Session;
+use Stripe\Charge;
+use Stripe\Stripe;
 use Symfony\Component\Console\Input\Input;
 
 use App\Http\Requests;
@@ -15,24 +19,24 @@ class CartController extends Controller
 {
     public function postCart()
     {
-        if (Request::isMethod('post')) {
-            $product_id = Request::get('product_id');
+        if (\Request::isMethod('post')) {
+            $product_id = \Request::get('product_id');
             $product = Product::find($product_id);
 
             Cart::add(array('id' => $product_id, 'name' => $product->name, 'qty' => 1, 'price' => $product->price, 'image' => $product->image));
         }
 
         //increment the quantity
-        if (Request::get('product_id') && (Request::get('increment')) == 1) {
-            $rowId = Cart::search(array('id' => Request::get('product_id')));
+        if (\Request::get('product_id') && (\Request::get('increment')) == 1) {
+            $rowId = Cart::search(array('id' => \Request::get('product_id')));
             $item = Cart::get($rowId[0]);
 
             Cart::update($rowId[0], $item->qty + 1);
         }
 
         //decrease the quantity
-        if (Request::get('product_id') && (Request::get('decrease')) == 1) {
-            $rowId = Cart::search(array('id' => Request::get('product_id')));
+        if (\Request::get('product_id') && (\Request::get('decrease')) == 1) {
+            $rowId = Cart::search(array('id' => \Request::get('product_id')));
             $item = Cart::get($rowId[0]);
 
             Cart::update($rowId[0], $item->qty - 1);
@@ -50,8 +54,8 @@ class CartController extends Controller
 
     public function getCart() {
         //increment the quantity
-        if (Request::get('product_id') && (Request::get('increment')) == 1) {
-            $rowId = Cart::search(array('id' => Request::get('product_id')));
+        if (\Request::get('product_id') && (\Request::get('increment')) == 1) {
+            $rowId = Cart::search(array('id' => \Request::get('product_id')));
 
             $item = Cart::get($rowId[0]);
 
@@ -111,7 +115,24 @@ class CartController extends Controller
 
     public function postCheckout(Request $request)
     {
-        dd(Request::all());
-        return redirect()->back();
+        if (!Cart::count()) {
+            return redirect()->route('home')->withError('В корзине ничего нет');
+        }
+        Stripe::setApiKey('sk_test_1pP6nC6fgmE5BT0f6LFLyguG');
+        try {
+            Charge::create([
+                "amount" => round(Cart::total()/65*100, 0),
+                "currency" => "usd",
+                "source" => $request->input('stripeToken'), // obtained with Stripe.js
+                "description" => "Test charge"
+            ]);
+        } catch (\Exception $e) {
+            return redirect()->route('checkout')->with('error', $e->getMessage());
+        }
+        //\Event::fire(new OrderEvent($order));
+
+        Cart::store(Str::random());
+        Cart::destroy();
+        return redirect()->route('home')->withSuccess('Спасибо за покупку');
     }
 }

@@ -15,10 +15,9 @@
     <div class="row">
         @include('includes.flash')
         @include('includes.errors')
-        @yield('content')
     </div>
 </div>
-
+@yield('content')
 
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 {{ Html::script('src/js/jquery-ui.min.js') }}

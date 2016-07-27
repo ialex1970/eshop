@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
                 <h1>Checkout</h1>
-                <h4>Your total: {{ $total }} руб.</h4>
+                <h4>Your total: ${{ round($total/65, 0) }}</h4>
                 {!! Form::open(['route' => 'checkout', 'method' => 'post', 'id' => 'checkout-form']) !!}
             <!-- Name Form Input -->
                 <div class="form-group">
@@ -29,13 +29,13 @@
                 </div>
                 <!-- Cart-expiry-month Form Input -->
                 <div class="form-group">
-                    {{ Form::label('cart-expiry-month', 'Expiration Month:') }}
-                    {{ Form::text('cart-expiry-month', null, ['class' => 'form-control', 'id' => 'cart-expiry-month', 'required']) }}
+                    {{ Form::label('card-expiry-month', 'Expiration Month:') }}
+                    {{ Form::text('card-expiry-month', null, ['class' => 'form-control', 'id' => 'card-expiry-month', 'required']) }}
                 </div>
                 <!-- Cart-expiry-year Form Input -->
                 <div class="form-group">
-                    {{ Form::label('cart-expiry-year', 'Expiration Year:') }}
-                    {{ Form::text('cart-expiry-year', null, ['class' => 'form-control', 'id' => 'cart-expiry-year', 'required']) }}
+                    {{ Form::label('card-expiry-year', 'Expiration Year:') }}
+                    {{ Form::text('card-expiry-year', null, ['class' => 'form-control', 'id' => 'card-expiry-year', 'required']) }}
                 </div>
                 <!-- Card-cvc Form Input -->
                 <div class="form-group">
@@ -49,4 +49,9 @@
             </div>
         </div>
     </div>
+@stop
+
+@section('scripts')
+    {{ Html::script('https://js.stripe.com/v2/') }}
+    {{ Html::script('src/js/checkout.js') }}
 @stop
