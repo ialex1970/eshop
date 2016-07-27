@@ -26,7 +26,6 @@ return [
         'is_active' => [
             'title' => 'Active',
         ],
-       
     ],
     'filters' => [
         'brand' => [
