@@ -13,7 +13,7 @@
                         </div>
                         <div class="panel-body">
                             <div class="text-center">
-                                <img src="http://placehold.it/170x150" alt="">
+                                <img src="/uploads/products/small/{{  $product->image }}" alt="{{ $product->name }}">
                             </div>
                             <div class="text-center">
                                 <h3>{{ $product->price }} руб.</h3>

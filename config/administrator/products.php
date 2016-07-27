@@ -60,8 +60,9 @@ return [
             'type' => 'image',
             'location' => public_path() . '/uploads/products/original/',
             'sizes' => [
-                [282, 150, 'auto', public_path() . '/uploads/articles/small/', 100],
-                [596, 270, 'auto', public_path() . '/uploads/articles/large/', 100],
+                [282, 150, 'auto', public_path() . '/uploads/products/small/', 100],
+                [380, 173, 'auto', public_path() . '/uploads/products/medium/', 100],
+                [596, 270, 'auto', public_path() . '/uploads/products/large/', 100],
             ],
         ],
     ],

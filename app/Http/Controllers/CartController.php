@@ -17,8 +17,9 @@ class CartController extends Controller
         if (Request::isMethod('post')) {
             $product_id = Request::get('product_id');
             $product = Product::find($product_id);
+            //dd($product);
 
-            Cart::add(array('id' => $product_id, 'name' => $product->name, 'qty' => 1, 'price' => $product->price));
+            Cart::add(array('id' => $product_id, 'name' => $product->name, 'qty' => 1, 'price' => $product->price, 'image' => $product->image));
         }
 
         //increment the quantity
