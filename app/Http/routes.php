@@ -60,6 +60,16 @@ Route::get('clear-cart', [
     'as' => 'clear.cart'
 ]);
 
+Route::get('checkout', [
+    'uses' =>  'CartController@getCheckout',
+    'as' => 'checkout'
+]);
+
+Route::post('checkout', [
+    'uses' =>  'CartController@postCheckout',
+    'as' => 'checkout'
+]);
+
 Route::get('profile/{id}', [
    'uses' => 'UserController@getProfile',
     'as' => 'profile'

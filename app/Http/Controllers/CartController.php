@@ -7,8 +7,9 @@ use Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Request;
 use Session;
+use Symfony\Component\Console\Input\Input;
 
-//use App\Http\Requests;
+use App\Http\Requests;
 
 class CartController extends Controller
 {
@@ -17,7 +18,6 @@ class CartController extends Controller
         if (Request::isMethod('post')) {
             $product_id = Request::get('product_id');
             $product = Product::find($product_id);
-            //dd($product);
 
             Cart::add(array('id' => $product_id, 'name' => $product->name, 'qty' => 1, 'price' => $product->price, 'image' => $product->image));
         }
@@ -96,6 +96,22 @@ class CartController extends Controller
 
         Cart::remove($rowId);
         //session(['count'] ) = Session::get('count') - 1 ;
+        return redirect()->back();
+    }
+
+    public function getCheckout()
+    {
+        if (!Cart::count()) {
+            return redirect()->route('home')->withError('В корзине ничего нет');
+        }
+        //$cart = Cart::content();
+        $total = Cart::total();
+        return view('carts.checkout', compact('total'));
+    }
+
+    public function postCheckout(Request $request)
+    {
+        dd(Request::all());
         return redirect()->back();
     }
 }
