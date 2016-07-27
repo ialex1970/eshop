@@ -23,6 +23,9 @@ return [
         'price' => [
             'title' => 'Цена',
         ],
+        'is_active' => [
+            'title' => 'Active',
+        ],
        
     ],
     'filters' => [
@@ -38,6 +41,10 @@ return [
         ],
     ],
     'edit_fields' => [
+        'is_active' => [
+            'title' => 'Active',
+            'type' => 'bool'
+        ],
         'category' => [
             'title' => "Категория",
             'type' => 'relationship',

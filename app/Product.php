@@ -20,4 +20,8 @@ class Product extends Model
     {
         return $this->belongsToMany('App\Order');
     }
+
+    public function scopeActive($query) {
+        return $query->where('is_active', 1);
+    }
 }

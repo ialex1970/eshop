@@ -16,7 +16,7 @@ class PageController extends Controller
     
     public function getIndex()
     {
-        $data['products'] = Product::all();
+        $data['products'] = Product::active()->get();
         
         return view('pages.index', $data);
     }
