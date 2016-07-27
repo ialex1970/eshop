@@ -56,6 +56,10 @@ return [
             'title' => 'Описание',
             'type' => 'wysiwyg',
         ],
+        'price' => [
+            'title' => 'Цена',
+            'type' => 'number',
+        ],
         'image' => [
             'type' => 'image',
             'location' => public_path() . '/uploads/products/original/',
